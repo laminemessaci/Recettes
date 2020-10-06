@@ -2,8 +2,15 @@
 
 {% block title %}Les Aliments {% endblock %}
 
-{% block monTitle %} Liste des Aliments {% endblock %}
+{% block monTitle %}
+    Liste des Aliments
+    {% if isCalorie %}
+        avec moins de 50 calories
+    {% endif %}
+
+{% endblock %}
 {% block body %}
+    <a href="{{ path( 'alimentsParCalorie', {'calorie':50} ) }}"> Aliment avec moin de 50 calories par 100g</a>
 
     <div class="container ">
         <div class="row">
