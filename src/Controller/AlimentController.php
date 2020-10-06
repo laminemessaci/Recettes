@@ -22,13 +22,22 @@ class AlimentController extends AbstractController
 
     /**
      * @Route("/aliments/{calorie}", name="alimentsParCalorie")
-     * @param AlimentRepository $repository
-     * @param $calorie
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function alimentMoinsCaloriques (AlimentRepository $repository, $calorie)
     {
-        $aliments = $repository->getAlimentParCalories('calorie', '<' ,$calorie);
+        $aliments = $repository->getAlimentParPropriete('calorie', '<' ,$calorie);
+        return $this->render('aliment/aliments.html.twig', [
+            'aliments' => $aliments,
+            'isCalorie' =>true
+        ]);
+    }
+
+    /**
+     * @Route("/aliments/{calorie}", name="alimentsParCalorie")
+     */
+    public function alimentMoinsCaloriques (AlimentRepository $repository, $calorie)
+    {
+        $aliments = $repository->getAlimentParPropriete('calorie', '<' ,$calorie);
         return $this->render('aliment/aliments.html.twig', [
             'aliments' => $aliments,
             'isCalorie' =>true
