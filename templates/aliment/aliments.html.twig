@@ -13,13 +13,23 @@
 {% endblock %}
 
 {% block body %}
-    <a href="{{ path( 'aliments' ) }}" class="btn btn-primary"> Tous les aliments</a>
-    <a href="{{ path( 'alimentsParCalorie', {'calorie':50} ) }}" class="btn btn-primary"> Aliment avec moin de 50
-        calories par 100g</a>
-    <a href="{{ path( 'alimentsParGlucides', {'glucide':5} ) }}" class="btn btn-primary"> Aliment avec moin de 5
-        glucides par 100g</a>
+
 
     <div class="container ">
+        <div class="row">
+            <div class="col-auto ">
+                <a href="{{ path( 'aliments' ) }}" class="btn btn-primary"> Tous les aliments</a>
+            </div>
+            <div class="col-auto ">
+                <a href="{{ path( 'alimentsParCalorie', {'calorie':50} ) }}" class="btn btn-primary"> Aliment avec moin
+                    de 50 calories par 100g</a>
+            </div>
+            <div class="col-auto ">
+                <a href="{{ path( 'alimentsParGlucides', {'glucide':5} ) }}" class="btn btn-primary"> Aliment avec moin
+                    de 5 glucides par 100g</a>
+            </div>
+        </div>
+        <hr>
         <div class="row">
             {% for aliment in aliments %}
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
