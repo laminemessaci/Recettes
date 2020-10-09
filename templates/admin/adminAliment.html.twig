@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Adminstration {% endblock %}
+
+{% block monTitle %} Page d'administration {% endblock %}
+
+{% block body %}
+    <div class="form-actions ml-5">
+        <button type="submit" class="btn btn-success"><span class="bi bi-plus-square"></span> Ajouter</button>
+        <a class="btn btn-primary" href=""><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
+    </div>
+    <hr> <hr>
+    <table class="table">
+        <tr class="table-primary ">
+            <td>Image</td>
+            <td>Aliment</td>
+            <td>Prix</td>
+            <td>Calories</td>
+            <td>Proteine</td>
+            <td>Glucides</td>
+            <td>Lipides</td>
+            <td>Actions</td>
+        </tr>
+        {% for aliment in aliments  %}
+            <tr>
+                <td ><img src="{{ asset('images/'~aliment.image) }}" class="perso_imgAlimentAdmin img-thumbnail"  alt="alimentImg"></td>
+                <td> <strong> {{ aliment.nom }}</strong></td>
+                <td> {{ aliment.prix }}</td>
+                <td> {{ aliment.calorie }}</td>
+                <td> {{ aliment.proteine }}</td>
+                <td> {{ aliment.glucide }}</td>
+                <td> {{ aliment.lipide }}</td>
+                <td>
+                    <a class="btn btn-secondary" href="{{ path('admin_aliment_modification',{'id' : aliment.id}) }}">Modifier</a>
+                    <a class="btn btn-danger" href="">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
+

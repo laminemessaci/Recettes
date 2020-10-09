@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modification {% endblock %}
+
+{% block monTitle %} Modification {{ aliment.nom }} {% endblock %}
+
+{% block body %}
+    <hr> <hr>
+    <div class="container">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-6 card-header text-left ">
+                <img class="mb-5 ml-5" src="{{ asset('images/' ~ aliment.image) }}" style="width: 25%" alt="imageAliment">
+                <div>{{ form_row(form.image, {"attr": {'class': 'bg-success'}}) }}</div>
+                <div> {{ form_row(form.nom, {"attr": {'class':'text-danger bg-success'}, "label": "Nom d'aliment"}) }}</div>
+            </div>
+            <div class="col-6 card-header text-left">
+                {{ form_widget(form) }}
+            </div>
+
+        </div>
+        <hr>
+        <div class="content text-center">
+            <div class="col"><input type="submit" class="btn btn-primary" value="enregistrer"></div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
