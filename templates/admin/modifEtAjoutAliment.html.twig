@@ -2,15 +2,23 @@
 
 {% block title %} Modification {% endblock %}
 
-{% block monTitle %} Modification {{ aliment.nom }} {% endblock %}
+{% block monTitle %}
+    {% if(isModification ) %}
+        Modification {{ aliment.nom }}
+    {% else %}
+        Ajout d'un nouveau aliment
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <hr> <hr>
+    <hr>
+    <hr>
     <div class="container">
         {{ form_start(form) }}
         <div class="row">
             <div class="col-6 card-header text-left ">
-                <img class="mb-5 ml-5" src="{{ asset('images/' ~ aliment.image) }}" style="width: 25%" alt="imageAliment">
+                <img class="mb-5 ml-5" src="{{ asset('images/' ~ aliment.image) }}" style="width: 25%"
+                     alt="imageAliment">
                 <div>{{ form_row(form.image, {"attr": {'class': 'bg-success'}}) }}</div>
                 <div> {{ form_row(form.nom, {"attr": {'class':'text-danger bg-success'}, "label": "Nom d'aliment"}) }}</div>
             </div>
