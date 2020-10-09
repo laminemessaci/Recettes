@@ -55,7 +55,8 @@
                           action="{{ path('admin_aliment_suppression', {'id' : aliment.id}) }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token("SUP" ~ aliment.id) }}">
-                        <input type="submit" class="btn btn-danger" value="supprimer" onsubmit=" return confirm('Confirmer la suppression?')">
+                        <input type="submit" class="btn btn-danger" value="supprimer" onclick=" return confirm('Confirmer la suppression?')">
+
                     </form>
                 </td>
             </tr>
