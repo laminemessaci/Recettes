@@ -24,10 +24,14 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/aliment/creation", name="admin_aliment_creation")
      * @Route("/admin/aliment/{id}", name="admin_aliment_modification")
      */
-    public function modification(Aliment $aliment, Request $request)
+    public function ajoutModification(Aliment $aliment = null, Request $request)
     {
+        if (!$aliment){
+            $aliment = new Aliment();
+        }
         $manager = $this->getDoctrine()->getManager();
         $form = $this->createForm(AlimentType::class, $aliment);
         $form->handleRequest($request);
@@ -39,7 +43,8 @@ class AdminController extends AbstractController
 
         return $this->render('admin/modificationAliment.html.twig',[
             "aliment" =>$aliment,
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "isModification" => $aliment->getId() !== null // cette condition est valable si le champ id existe en BDD
         ]);
     }
 }
