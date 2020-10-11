@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Aliments {% endblock %}
+
+{% block monTitle %}
+    Liste des types
+
+{% endblock %}
+
+{% block body %}
+    {% for type in lestypes %}
+        {{ type.libelle }}
+    {% endfor %}
+
+{% endblock %}
