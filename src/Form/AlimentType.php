@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Aliment;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,12 +15,11 @@ class AlimentType extends AbstractType
         $builder
             ->add('nom')
             ->add('prix')
-            ->add('image')
+            ->add('imageFile',FileType::class,['required'=>false])
             ->add('calorie')
             ->add('proteine')
             ->add('glucide')
-            ->add('lipide')
-        ;
+            ->add('lipide');
     }
 
     public function configureOptions(OptionsResolver $resolver)

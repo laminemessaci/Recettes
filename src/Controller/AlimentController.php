@@ -11,39 +11,39 @@ class AlimentController extends AbstractController
     /**
      * @Route("/", name="aliments")
      */
-    public function index(AlimentRepository  $repository)
+    public function index(AlimentRepository $repository)
     {
         $aliments = $repository->findAll();
         return $this->render('aliment/aliments.html.twig', [
             'aliments' => $aliments,
             'isCalorie' => false,
-            'isGlucide' =>false
+            'isGlucide' => false
         ]);
     }
 
     /**
      * @Route("/aliments/calorie/{calorie}", name="alimentsParCalorie")
      */
-    public function alimentMoinsCaloriques (AlimentRepository $repository, $calorie)
+    public function alimentMoinsCaloriques(AlimentRepository $repository, $calorie)
     {
-        $aliments = $repository->getAlimentParPropriete('calorie', '<' ,$calorie);
+        $aliments = $repository->getAlimentParPropriete('calorie', '<', $calorie);
         return $this->render('aliment/aliments.html.twig', [
             'aliments' => $aliments,
-            'isCalorie' =>true,
-            'isGlucide' =>false
+            'isCalorie' => true,
+            'isGlucide' => false
         ]);
     }
 
     /**
      * @Route("/aliments/glucide/{glucide}", name="alimentsParGlucides")
      */
-    public function alimentMoinsGlucides (AlimentRepository $repository, $glucide)
+    public function alimentMoinsGlucides(AlimentRepository $repository, $glucide)
     {
-        $aliments = $repository->getAlimentParPropriete('glucide', '<' ,$glucide);
+        $aliments = $repository->getAlimentParPropriete('glucide', '<', $glucide);
         return $this->render('aliment/aliments.html.twig', [
             'aliments' => $aliments,
-            'isCalorie' =>false,
-            'isGlucide' =>true
+            'isCalorie' => false,
+            'isGlucide' => true
         ]);
     }
 

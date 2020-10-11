@@ -22,11 +22,10 @@ class AlimentRepository extends ServiceEntityRepository
     public function getAlimentParPropriete($propriete, $signe, $calorie)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.'.$propriete.' '.$signe.' :val')
+            ->andWhere('a.' . $propriete . ' ' . $signe . ' :val')
             ->setParameter('val', $calorie)
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     // /**

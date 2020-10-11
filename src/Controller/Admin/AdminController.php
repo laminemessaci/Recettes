@@ -28,15 +28,19 @@ class AdminController extends AbstractController
      */
     public function ajoutModification(Aliment $aliment = null, Request $request)
     {
-        if (!$aliment) {
-            $aliment = new Aliment();
-        }
+        if (!$aliment) {$aliment = new Aliment();}
+
         $manager = $this->getDoctrine()->getManager();
         $form = $this->createForm(AlimentType::class, $aliment);
+        //boolean pour savoir si modif ou suppression
+        $modif = $aliment->getId() != null;
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($aliment);
             $manager->flush();
+            //ajout de flash message
+            $this->addFlash("success", ($modif)? "La modification a été effectuée": "L'ajout a été effectué ");
             return $this->redirectToRoute('admin_aliment');
         }
 
@@ -45,6 +49,7 @@ class AdminController extends AbstractController
             "form" => $form->createView(),
             "isModification" => $aliment->getId() !== null // cette condition est valable si le champ id existe en BDD
         ]);
+
     }
 
     /**
@@ -57,6 +62,8 @@ class AdminController extends AbstractController
             $manager = $this->getDoctrine()->getManager();
             $manager->remove($aliment);
             $manager->flush();
+            //ajout de flash message
+            $this->addFlash("success", "La suppression a été effectuée");
             return $this->redirectToRoute("admin_aliment");
         }
     }
