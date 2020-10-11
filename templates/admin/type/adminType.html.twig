@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Adminstration {% endblock %}
+{% block title %} Adminstration Types {% endblock %}
 
-    {% block monTitle %}<div class="container text-center"> Page d'administration</div> {% endblock %}
+    {% block monTitle %}
+        <div class="container text-center"> Page d'administration des types</div> {% endblock %}
 
 {% block body %}
     <div class="container">
@@ -15,7 +16,7 @@
 
         {% endfor %}
         <div class="form-actions ml-5">
-            <a href="{{ path('admin_aliment_creation') }}">
+            <a href="{{ path('ajoutTypes') }}">
                 <button type="submit" class="btn btn-success"><span class="bi bi-plus-square"></span>
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +26,7 @@
                     Ajouter
                 </button>
             </a>
-            <a class="btn btn-primary" href="{{ path('aliments') }}"><span
+            <a class="btn btn-primary" href=""><span
                         class="glyphicon glyphicon-arrow-left"></span>
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-square-fill"
                      fill="currentColor"
@@ -42,34 +43,22 @@
         <table class="table">
             <tr class="table-primary ">
                 <td>Image</td>
-                <td>Aliment</td>
                 <td>Type</td>
-                <td>Prix</td>
-                <td>Calories</td>
-                <td>Proteine</td>
-                <td>Glucides</td>
-                <td>Lipides</td>
                 <td>Actions</td>
             </tr>
-            {% for aliment in aliments %}
+            {% for type in types %}
                 <tr>
-                    <td><img src="{{ asset('images/aliments/'~aliment.image) }}"
+                    <td><img src="{{ asset('images/types/'~type.image) }}"
                              class="perso_imgAlimentAdmin img-thumbnail"
                              alt="alimentImg"></td>
-                    <td><strong> {{ aliment.nom }}</strong></td>
-                    <td><strong> {{ aliment.type.libelle }}</strong></td>
-                    <td> {{ aliment.prix }}</td>
-                    <td> {{ aliment.calorie }}</td>
-                    <td> {{ aliment.proteine }}</td>
-                    <td> {{ aliment.glucide }}</td>
-                    <td> {{ aliment.lipide }}</td>
+                    <td><strong> {{ type.libelle }}</strong></td>
+
                     <td>
                         <a class="btn btn-secondary"
-                           href="{{ path('admin_aliment_modification',{'id' : aliment.id}) }}">Modifier</a>
-                        <form method="POST" style="display: inline-block"
-                              action="{{ path('admin_aliment_suppression', {'id' : aliment.id}) }}">
+                           href=" {{ path('modifTypes',{'id': type.id} ) }}">Modifier</a>
+                        <form method="POST" style="display: inline-block" action="{{ path("supType", {'id': type.id}) }}">
                             <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token("SUP" ~ aliment.id) }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('SUP' ~ type.id) }}">
                             <input type="submit" class="btn btn-danger" value="supprimer"
                                    onclick=" return confirm('Confirmer la suppression?')">
 
@@ -79,5 +68,6 @@
             {% endfor %}
         </table>
     </div>
+
 {% endblock %}
 

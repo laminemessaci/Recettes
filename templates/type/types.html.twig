@@ -8,8 +8,17 @@
 {% endblock %}
 
 {% block body %}
-    {% for type in lestypes %}
-        {{ type.libelle }}
-    {% endfor %}
+    <div class="container">
+        <div class="row">
+            {% for type in lestypes %}
+            <div class="col-auto">
+                <h2>{{ type.libelle }} </h2>
+                <img src="{{ asset('images/types/'~ type.image) }}" class="perso_imgAlimentAdmin card_img-top img-thumbnail">
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
 
 {% endblock %}
