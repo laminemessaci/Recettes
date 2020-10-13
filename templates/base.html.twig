@@ -36,10 +36,17 @@
                 </div>
             </li>
 
+            <li class="nav_item">
+                <a class="nav-link" href="{{ path('inscription') }}">Inscription </a>
+            </li>
+
         </ul>
     </div>
 </nav>
-<h1 class="border border-primary rounded p-2 m-2 text-white"> {% block monTitle %}{% endblock %}  </h1>
+<div class="container text-center">
+    <h1 class="border border-primary rounded p-2 m-2 text-white"> {% block monTitle %}{% endblock %}  </h1>
+</div>
+
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

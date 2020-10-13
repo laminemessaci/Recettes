@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block monTitle %}
+    Inscription Sur le site
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="card container" style="width: 30rem;">
+        <div class="container text-center rounded">
+            <img src="images/types/fruit.jpg" class="rounded  card-img-top" alt="imagFruit">
+        </div>
+        <hr>
+        <hr>
+
+        <div class="card-body">
+            {{ form_start(form) }}
+            {{ form_row(form.username,{
+                "attr": {"placeholder": "Saisir votre login"
+                },
+                "label": "Votre login"
+            }) }}
+            {{ form_widget(form) }}
+
+            <div class="card-body text-center">
+                <input type="submit" class="btn btn-primary" value="Valider">
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+
+
+    </div>
+
+{% endblock %}
