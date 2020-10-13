@@ -4,9 +4,15 @@ namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
+ * @UniqueEntity(
+ *     fields={"username"},
+ *     message="Ce login existe deja!"
+ * )
  */
 class Utilisateur
 {
@@ -19,16 +25,20 @@ class Utilisateur
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length (min="5", max="10", minMessage="Il faut plus 5 caractères", maxMessage="Il faut moin de 10 caractères")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length (min="5", max="10", minMessage="Il faut plus 5 caractères", maxMessage="Il faut moin de 10 caractères")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length (min="5", max="10", minMessage="Il faut plus 5 caractères", maxMessage="Il faut moin de 10 caractères")
+     * @Assert\EqualTo(propertyPath="password", message="les password ne sont pas equivalent!")
      */
     private $verificationPassword;
 
