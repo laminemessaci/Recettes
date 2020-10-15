@@ -22,7 +22,9 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ path("aliments") }}">aliments</a>
                     <div class="dropdown-divider"></div>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <a class="dropdown-item" href="{{ path('admin_aliment') }}">Administration</a>
+                    {% endif %}
                 </div>
             </li>
 
@@ -32,14 +34,26 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ path("types") }}">types</a>
                     <div class="dropdown-divider"></div>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <a class="dropdown-item" href="{{ path('admin_types') }}">Administration</a>
+                    {% endif %}
                 </div>
             </li>
+            {% if not app.user %}
+                <li class="nav_item">
+                    <a class="nav-link" href="{{ path('inscription') }}">Inscription </a>
+                </li>
 
-            <li class="nav_item">
-                <a class="nav-link" href="{{ path('inscription') }}">Inscription </a>
-            </li>
+                <li class="nav_item">
+                    <a class="nav-link" href="{{ path('connexion') }}">Connexion </a>
+                </li>
 
+            {% else %}
+
+                <li class="nav_item">
+                    <a class="nav-link" href="{{ path('deconnexion') }}">Deconnexion </a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>

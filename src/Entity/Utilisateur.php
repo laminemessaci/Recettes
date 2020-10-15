@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -14,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     message="Ce login existe deja!"
  * )
  */
-class Utilisateur
+class Utilisateur implements UserInterface
 {
     /**
      * @ORM\Id
@@ -36,11 +37,15 @@ class Utilisateur
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
      * @Assert\Length (min="5", max="10", minMessage="Il faut plus 5 caractères", maxMessage="Il faut moin de 10 caractères")
      * @Assert\EqualTo(propertyPath="password", message="les password ne sont pas equivalent!")
      */
     private $verificationPassword;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $roles;
 
     public function getId(): ?int
     {
@@ -88,4 +93,26 @@ class Utilisateur
     }
 
 
+    public function getRoles()
+    {
+        return [$this->roles];
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function setRoles(?string $roles): self
+    {
+        if ($roles === null){
+            $this->roles = "ROLE_USER";
+        }
+        return $this;
+    }
 }
